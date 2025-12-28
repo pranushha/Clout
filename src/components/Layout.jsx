@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom"
 import Sidebar from "./Sidebar"
 import Header from "./Header"
-import ProCard from "./ProCard"
+//import ProCard from "./ProCard"
 import "../styles/Layout.css"
 
 const Layout = ({ children }) => {
@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
         <Header />
         <div className="content-area">{children}</div>
       </div>
-      <ProCard />
+      {/* <ProCard /> */}
     </div>
   )
 }
