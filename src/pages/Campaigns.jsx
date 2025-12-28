@@ -45,9 +45,9 @@ const Campaigns = () => {
     "Campaign Type",
     "Platform",
     "Content Format",
-    "Category/Industry",
+    "Industry",
     "Budget",
-    "Campaign Duration",
+    "Duration",
     "Deliverables",
   ]
 

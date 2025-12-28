@@ -1,14 +1,14 @@
 .layout {
   display: flex;
   min-height: 100vh;
-  background: linear-gradient(135deg, #dbc1f8 0%, #99b3fc 100%);
+  background: fafbfc;
   position: relative;
 }
 
 .main-content {
   flex: 1;
-  margin-left: 180px;
-  padding: 20px 30px 20px 20px;
+  margin-left: 200px;
+  padding: 20px 80px 20px 20px;
   display: flex;
   flex-direction: column;
 }

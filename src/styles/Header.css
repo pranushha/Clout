@@ -1,36 +1,116 @@
 .header {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0;
+  padding: 15px 20px;
+  background-color: #fafbfc;
+  gap: 15px;
 }
 
 .page-title {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
   color: #272727;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .header {
+    padding: 12px 15px;
+  }
+  
+  .search-bar {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+    padding: 12px;
+  }
+  
+  .page-title {
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .header-right {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .search-bar {
+    max-width: 100%;
+    order: 1;
+  }
+  
+  .notification-btn {
+    order: 2;
+    align-self: flex-end;
+  }
+  
+  .user-profile {
+    order: 3;
+    justify-content: center;
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 10px;
+  }
+  
+  .page-title {
+    font-size: 18px;
+  }
+  
+  .user-profile {
+    padding: 6px 10px;
+  }
+  
+  .user-name, .user-role {
+    font-size: 13px;
+  }
 }
 
 .header-right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  flex: 1;
+  min-width: 0; /* Allows the container to shrink below its content's minimum size */
 }
 
 .search-bar {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: white;
+  background: #fafbfc;
   padding: 10px 16px;
   border-radius: 10px;
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
+  flex: 1;
+  min-width: 0; /* Allows the search bar to shrink below its content's minimum size */
 }
 
 .search-icon {
   font-size: 16px;
-  color: #999;
+  color: #000000;
 }
 
 .search-bar input {
@@ -47,7 +127,8 @@
 
 .notification-btn {
   position: relative;
-  background: white;
+  color: #99B3FC;
+  background-color: #f5f8ff;
   border: none;
   padding: 10px 12px;
   border-radius: 10px;
@@ -58,10 +139,10 @@
 .notification-badge {
   position: absolute;
   top: 8px;
-  right: 10px;
-  width: 8px;
-  height: 8px;
-  background: #ff6b6b;
+  right: 9px;
+  width: 5px;
+  height: 5px;
+  background: #EB5757;
   border-radius: 50%;
 }
 

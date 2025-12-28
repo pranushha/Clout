@@ -1,13 +1,79 @@
+/* Mobile Menu Button */
+.mobile-menu-button {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: none;
+  cursor: pointer;
+}
+
+/* Sidebar Base Styles */
 .sidebar {
   position: fixed;
   left: 0;
   top: 0;
-  width: 180px;
+  width: 200px;
   height: 100vh;
   background: white;
   padding: 20px 15px;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
   z-index: 100;
+  transition: transform 0.3s ease, width 0.3s ease;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #f0f0f0 transparent;
+}
+
+/* Webkit browsers (Chrome, Safari, newer Edge) */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #f0f0f0;
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: #e0e0e0;
+}
+
+/* Mobile Overlay */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  display: none;
+}
+
+/* Mobile Styles */
+.sidebar.mobile {
+  transform: translateX(-100%);
+  width: 280px;
+}
+
+.sidebar.mobile.open {
+  transform: translateX(0);
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.mobile.open + .sidebar-overlay {
+  display: block;
 }
 
 .logo {
@@ -18,6 +84,19 @@
   background: linear-gradient(135deg, #dbc1f8 0%, #99b3fc 100%);
   border-radius: 100px;
   margin-bottom: 30px;
+  transition: all 0.3s ease;
+}
+
+.sidebar.collapsed .logo {
+  padding: 12px;
+  justify-content: center;
+  width: 44px;
+  margin: 0 auto 30px;
+  overflow: hidden;
+}
+
+.sidebar.collapsed .logo-text {
+  display: none;
 }
 
 .logo-icon {
@@ -31,6 +110,7 @@
 .logo-text {
   font-size: 20px;
   font-weight: 600;
+  font-family: sitar;
   color: white;
   letter-spacing: 1px;
 }
@@ -57,6 +137,22 @@
   cursor: pointer;
   width: 100%;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar.collapsed .nav-text {
+  display: none;
+}
+
+.sidebar.collapsed .nav-item {
+  justify-content: center;
+  padding: 12px;
+}
+
+.sidebar.collapsed .nav-icon {
+  margin-right: 0;
 }
 
 .nav-item:hover {
@@ -64,7 +160,7 @@
 }
 
 .nav-item.active {
-  background: #99b3fc;
+  background: #A0C6EE;
   color: white;
 }
 
@@ -75,31 +171,111 @@
 
 .sign-out {
   margin-top: auto;
-  margin-top: 20px;
 }
-/* PRO CARD (SMALL & COMPACT) */
+/* PRO CARD (FULL) */
 .pro-card {
-  margin-top: 20px;
-  padding: 8px 12px;
-  background: linear-gradient(135deg, #dbc1f8, #99b3fc);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  margin-top: 24px;
+  padding: 16px 16px;
+  background: linear-gradient(90deg, #DBC1F8 0%, #99B3FC 100%);
+  border-radius: 14px;
+  text-align: center;
   color: white;
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  justify-content: center;
+  
 }
 
-.pro-card:hover {
+.pro-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+  color: white;
+}
+
+.pro-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.pro-text {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: 0.95;
+  margin-bottom: 18px;
+}
+
+.pro-btn {
+  width: 80%;
+  padding: 10px;
+  border-radius: 8px;
+  background: white;
+  color: #DDC2C6;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.pro-btn:hover {
   opacity: 0.9;
 }
+
 
 /* FIX ICON ALIGNMENT */
 .nav-icon {
   display: flex;
   align-items: center;
+  min-width: 20px;
 }
 
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .mobile-menu-button {
+    display: block;
+  }
+  
+  .sidebar {
+    z-index: 1000;
+  }
+  
+  .pro-card {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 85%;
+    max-width: 300px;
+  }
+  
+  .logo {
+    margin-top: 20px;
+  }
+}
+
+/* Smooth transitions for collapsed state */
+.sidebar.collapsed {
+  width: 70px;
+}
+
+.sidebar.collapsed .nav-text,
+.sidebar.collapsed .pro-title,
+.sidebar.collapsed .pro-text,
+.sidebar.collapsed .pro-btn {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  visibility: hidden;
+}
+
+.sidebar:not(.collapsed) .nav-text,
+.sidebar:not(.collapsed) .pro-title,
+.sidebar:not(.collapsed) .pro-text,
+.sidebar:not(.collapsed) .pro-btn {
+  opacity: 1;
+  transition: opacity 0.3s ease 0.1s;
+  visibility: visible;
+  height: auto;
+}
